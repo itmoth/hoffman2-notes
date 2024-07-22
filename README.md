@@ -51,5 +51,18 @@ $ ssh hoffman2
 
 I use GaussView to help me create input files for Gaussian and to visualize molecules. The following section will be about how to access it on Hoffman2.
 
+When you login to the cluster, you will be in a login node, and you don't want to open GaussView here. (You can verify you are in a login node because next to your username on your terminal, it will say @login1 or @login2 or @login3, and so on.) Instead you want to start an "interactive session". To do this, you want to use the following command 
+
+```
+$ qrsh
+```
+
+However, it's better to customize this command to suit your needs. I often use this next command, which requests 3 hours of runtime and 4 GB of memory.
+
+```
+$ qrsh -l h_rt=3:00:00,h_data=4G
+```
+
+After entering this command, wait a bit and you will be in the interactive session once you see something that resembles this [username@n#### ~] in your terminal, where # represents numbers. 
 
 
