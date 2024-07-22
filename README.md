@@ -73,4 +73,16 @@ At this point, you can now open GaussView using the following command
 $ gaussview
 ```
 
+### Using GaussView
+
+You can now start creating molecules and setting up your molecules for the type of calculation you want to run. I won't be going over this because I don't know what calculation you want to run lol! There are a lot of youtube videos out there to help. I will instead skip to setting up your calculations with GaussView.
+
+Once you are done setting up everything for your molecule, you want to click the inquiry button, which looks like this: 
+
+![alt text](https://github.com/[itmoth]/[hoffman2-chem-notes]/screenshots/inquirybutton.png?raw=true)
+
+
+
+
+
 
