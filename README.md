@@ -1,6 +1,6 @@
 # hoffman2-chem-notes
 
-These are my notes for setting up and using Hoffman2 using windows subsystem for linux (WSL). i have not included the steps for getting an account or getting access to Gaussian.
+These are my notes for setting up and using Hoffman2 using Windows Subsystem for Linux (WSL). I have not included the steps for getting an account or getting access to Gaussian.
 
 ## SSH Customization 
 
