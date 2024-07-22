@@ -2,7 +2,7 @@
 
 These are my notes for setting up and using Hoffman2 using windows subsystem for linux (WSL). i have not included the steps for getting an account or getting access to Gaussian.
 
-## ssh customization 
+## SSH Customization 
 
 Find where your .ssh folder is, for me it was
 
