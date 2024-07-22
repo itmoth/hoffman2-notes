@@ -25,7 +25,7 @@ $ chmod 600 /home/USERNAME/.ssh/config
 You can now start customizing your ssh by editing this config file. I used nano to edit the file.
 
 ```
-nano /home/USERNAME/.ssh/config
+$ nano /home/USERNAME/.ssh/config
 ```
 
 Copy and paste the following text into the file. These customizations  will make logging in easier, prevent connection dropping, and allow X11 forwarding, which allows you to use software like GaussView.
@@ -41,10 +41,10 @@ Host hoffman2
   ForwardX11 yes
 ```
 
-Now, if you want to connect to Hoffman2, you can just type the following command.
+Now, if you want to connect to Hoffman2, you can just type the following command into your terminal.
 
 ```
-ssh hoffman2
+$ ssh hoffman2
 ```
 
 ## GaussView
