@@ -79,7 +79,7 @@ You can now start creating molecules and setting up your molecules for the type 
 
 Once you are done setting up everything for your molecule, you want to click the inquiry button, which looks like this: 
 
-![alt text](https://github.com/[itmoth]/[hoffman2-chem-notes]/screenshots/inquirybutton.png?raw=true)
+![alt text](https://github.com/itmoth/hoffman2-chem-notes/blob/main/screenshots/inquirybutton.png "Inquiry Button on GaussView")
 
 
 
