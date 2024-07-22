@@ -79,7 +79,7 @@ You can now start creating molecules and setting up your molecules for the type 
 
 Once you are done setting up everything for your molecule, you want to click the inquiry button, which looks like this: 
 
-<img src="https://github.com/itmoth/hoffman2-chem-notes/blob/main/screenshots/inquirybutton.png" width="250">
+<img src="https://github.com/itmoth/hoffman2-chem-notes/blob/main/screenshots/inquirybutton.png" width="350">
 
 
 
