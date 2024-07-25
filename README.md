@@ -2,6 +2,10 @@
 
 These are my notes for setting up and using Hoffman2 using Windows Subsystem for Linux (WSL). I have not included the steps for getting an account or getting access to Gaussian. If this is your first time using any form of Linux this should also be easy to follow along with!
 
+## Table of Contents
+- [SSH Customization](#ssh-customization)
+- [Getting the Output Files](#getting-the-output-files)
+
 ## SSH Customization 
 
 We are able to remotely connect to Hoffman2 using SSH. To make our experience easier moving forward, it's best to customize SSH. 
