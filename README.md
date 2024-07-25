@@ -4,6 +4,12 @@ These are my notes for setting up and using Hoffman2 using Windows Subsystem for
 
 ## Table of Contents
 - [SSH Customization](#ssh-customization)
+- [GaussView](#gaussview)
+  * [Opening GaussView](#opening-gaussview)
+  * [Using GaussView](#opening-gaussview)
+- [Running Your Job](#running-your-job)
+  * [Making a Submission Script](#making-a-submission-script)
+  * [Submitting Your Job](#submitting-your-job)
 - [Getting the Output Files](#getting-the-output-files)
 
 ## SSH Customization 
@@ -99,7 +105,7 @@ Once you finish picking your method, move to "Link 0" to choose your memory and 
 
 Once you are done, you can save your file by clicking edit. After doing so, your input file will show up in a new window. If the functional you wanted to use was not in the drop-down menu, you can now change it to your chosen one by replacing the functional you initally selected. Save the file again and you should be good! You can now exit GaussView. If it asks you if you want to submit your job, *say no*.
 
-## Submitting Your Job
+## Running Your Job
 
 We want to be submitting our file as a batch job, which takes two steps: writing your submission script, and actually submitting the job.
 
@@ -204,6 +210,8 @@ We now want to change our directory to the folder you just made.
 ```
 $ cd folder-name
 ```
+
+### Submitting Your Job
 
 We can now submit our job! To do this, we will be using the qsub command
 
