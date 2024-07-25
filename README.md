@@ -81,6 +81,19 @@ Once you are done setting up everything for your molecule, you want to click the
 
 <img src="https://github.com/itmoth/hoffman2-chem-notes/blob/main/screenshots/inquirybutton.png" width="350">
 
+Then, click Calculate on the top bar, and then Gaussian Calculation Setup. A new window will pop up. At this point you can select your job type. 
+
+Here are some notes regarding the job types:
+- If you want to run a transition state calculation, you will need to select Optimize, and then select whatever transition state calculation you want to run under the "Optimize To" option.
+- If you want to run a scan, you will need to have specified which bonds/angles/dihedrals you want to scan in the redundant coordinate editor.
+
+After, you should select your method. Note that all the available functionals are not in the drop down menu. If the functional you want to use is not in the menu, then you can just pick a random functional at this point and then change your input file later. 
+
+Once you finish picking your method, move to "Link 0" to choose your memory and amount of processors. The values you want to set depend on the functional you choose. For something like B3LYP, 4 GB and 8 Processors should be just fine. For something like M06-2x, I typically do 12 processors and 8 GB. 
+
+Once you are done, you can save your file by clicking edit. After doing so, your input file will show up in a new window. If the functional you wanted to use was not in the drop-down menu, you can now change it to your chosen one by replacing the functional you initally selected. Save the file again and you should be good! You can now exit GaussView. If it asks you if you want to submit your job, *say no*.
+
+
 
 
 
