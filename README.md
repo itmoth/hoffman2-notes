@@ -1,8 +1,10 @@
 # hoffman2-chem-notes
 
-These are my notes for setting up and using Hoffman2 using Windows Subsystem for Linux (WSL). I have not included the steps for getting an account or getting access to Gaussian.
+These are my notes for setting up and using Hoffman2 using Windows Subsystem for Linux (WSL). I have not included the steps for getting an account or getting access to Gaussian. If this is your first time using any form of Linux this should also be easy to follow along with!
 
 ## SSH Customization 
+
+We are able to remotely connect to Hoffman2 using SSH. To make our experience easier moving forward, it's best to customize SSH. 
 
 Find where your .ssh folder is, for me it was
 
@@ -22,13 +24,13 @@ Followed by this next command, which will make sure only the owner (you) will ha
 $ chmod 600 /home/USERNAME/.ssh/config
 ```
 
-You can now start customizing your ssh by editing this config file. I used nano to edit the file.
+You can now start customizing your ssh by editing this config file. I used nano to edit the file. If this is your first time using nano, Ctrl-O, or 'write-out', saves the file, and Ctrl-X is used to exit.
 
 ```
 $ nano /home/USERNAME/.ssh/config
 ```
 
-Copy and paste the following text into the file. These customizations  will make logging in easier, prevent connection dropping, and allow X11 forwarding, which allows you to use software like GaussView.
+Copy and paste the following text into the file. These customizations  will make logging in easier, prevent connection dropping, and allow X11 forwarding (which allows you to use software like GaussView on the cluster).
 
 ```
 Host hoffman2
@@ -41,7 +43,7 @@ Host hoffman2
   ForwardX11 yes
 ```
 
-Now, if you want to connect to Hoffman2, you can just type the following command into your terminal.
+Now, if you want to connect to Hoffman2, you can just type the following command into your terminal and enter your password when prompted.
 
 ```
 $ ssh hoffman2
@@ -93,10 +95,137 @@ Once you finish picking your method, move to "Link 0" to choose your memory and 
 
 Once you are done, you can save your file by clicking edit. After doing so, your input file will show up in a new window. If the functional you wanted to use was not in the drop-down menu, you can now change it to your chosen one by replacing the functional you initally selected. Save the file again and you should be good! You can now exit GaussView. If it asks you if you want to submit your job, *say no*.
 
+## Submitting Your Job
 
+We want to be submitting our file as a batch job, which takes two steps: writing your submission script, and actually submitting the job.
 
+### Making a Submission Script
 
+You will first need to use a text editor to make your submission script. I recommend a command-line-interface one so that you don't need to open another window! I personally recommend nano because it's probably already installed and it's easy to use. If it's your first time using nano, I will also be including how to use it as we move forward.
 
+Open nano.
+
+```
+$ nano
+```
+
+Copy and paste the following code:
+
+```
+### submit_gaussian.sh START ###
+###################################################################################################
+# THIS SCRIPT ASSUMES THAT YOU WILL SUBMIT IT AS FOLLOWS:
+# qsub -N YOUR_GAUSSIAN_INPUT_FILE_NAME submit_gaussian.sh
+# YOU CAN MODIFY RESOURCES BELOW OR MODIFY THEM AT SUBMISSION, E.G.:
+# qsub -N YOUR_GAUSSIAN_INPUT_FILE_NAME -l h_data=8G,h_rt=24:00:00 -pe shared 8 submit_gaussian.sh
+# MAKE SURE THAT YOUR INPUT FILE PROLOG HAS A LINE:
+# %nprocshared=8
+# WITH THE SAME (OR LESS) NUMBER OF CORES REQUESTED (I.E.: -pe shared 8)
+#!/bin/bash
+#$ -cwd
+#$ -o $JOB_NAME.joblog.$JOB_ID
+#$ -j y
+#$ -M $USER@mail
+#$ -m bea
+# CHANGE THE RESOURCES BELOW AS NEEDED:
+#$ -l h_data=4G,h_rt=24:00:00
+# CHANGE THE NUMBER OF CORES AS NEEDED:
+#$ -pe shared 8
+###################################################################################################
+
+# YOU GENERALLY WILL NOT NEED TO MODIFY THE LINES BELOW:
+
+# echo job info on joblog:
+echo "Job $JOB_ID started on:   " `hostname -s`
+echo "Job $JOB_ID started on:   " `date `
+echo " "
+
+# set job environment and GAUSS_SCRDIR variable
+. /u/local/Modules/default/init/modules.sh
+module load gaussian
+export GAUSS_SCRDIR=$TMPDIR
+# echo in joblog
+module li
+echo "GAUSS_SCRDIR=$GAUSS_SCRDIR"
+echo " "
+
+echo "/usr/bin/time -v $g16root/g16 < ${JOB_NAME%.*}.gjf > ${JOB_NAME%.*}.out"
+/usr/bin/time -v $g16root/g16 < ${JOB_NAME%.*}.gjf > ${JOB_NAME%.*}.out
+
+# echo job info on joblog:
+echo "Job $JOB_ID ended on:   " `hostname -s`
+echo "Job $JOB_ID ended on:   " `date `
+echo " "
+echo "Input file START:"
+cat ${JOB_NAME%.*}.gjf
+echo "END of input file"
+echo " "
+### submit_gaussian.sh STOP ###
+```
+
+Save this file as 'gaussian_submit.sh' or a similar name.
+
+If you saved the file to your local machine and not to your account on your cluster, you want to move it from your computer to the cluster. You can do this by using the following command:
+
+```
+$ scp gaussian_submit.sh HOFFMAN2-USERNAME@dtn2.hoffman2.idre.ucla.edu:.
+```
+
+To check if the file is actually on your account, be logged into the cluster, and use the following command:
+
+```
+$ ls
+```
+
+This lists the files in the current directory you are in. gaussian_submit.sh should be listed. At this point, I recommend learning other commands that are used to navigate around the filesystem. This will make using Hoffman2 easier, and help you keep organized with your files. The first command I recommend using is mkdir, which makes a directory. Since your output will be in the same folder as your input files, I like to make a new folder for each job. We can start by making a folder. 
+
+```
+$ mkdir folder-name
+```
+
+Now, to move your gaussian input file into the folder:
+
+```
+$ mv input-file-name.gjf folder-name
+```
+
+To copy your submission script into the folder,
+
+```
+$ cp gaussian_submit.sh folder-name
+```
+
+We now want to change our directory to the folder you just made. 
+
+```
+$ cd folder-name
+```
+
+We can now submit our job! To do this, we will be using the qsub command
+
+```
+$ qsub -N input-file-name -pe shared number-of-processors -l h_rt=24:00:00,h_data=number-of-gb gaussian_submit.sh
+```
+
+The number of processors you specify in the command should match what is in your input file. The number of gigabytes in your command should be a tiny bit higher than what's in your input file. (2 gigabytes more is fine)
+
+You should see that your job has submitted! To get the status of your job, use the following command:
+
+```
+$ qstat -u HOFFMAN2-USERNAME
+```
+
+If your job is waiting to run, you should see 'qw'. If it is running, it should say 'r'. If your job is finished, nothing will show up. If you want to go back to your home directory, just type and enter cd into your terminal. 
+
+If you'd like, you can open your joblog once your job is finished to make sure nothing went wrong, such as a segmentation violation. To do this, use the following command
+
+```
+$ cat input-file-name.joblog.joblog-number
+```
+
+## Getting the Output Files
+
+There are a few ways to get the output files from the cluster to your computer. The Hoffman2 Documentation page has a lot of information about that. I tried setting up Google Drive to get my files but that didn't work for me. Box works for me though! The instructions are pretty complex so I will not be going over them.  
 
 
 
