@@ -19,9 +19,9 @@ Q-Chem
   * [Getting and Using IQmol](#getting-and-using-iqmol)
   * [Making the Submission Script and Submitting Your Job](#making-the-submission-script-and-submitting-your-job)
 
+## G*us\sian
 
-
-## SSH Customization 
+### SSH Customization 
 
 We are able to remotely connect to Hoffman2 using SSH. To make our experience easier moving forward, it's best to customize SSH. 
 
@@ -68,11 +68,11 @@ Now, if you want to connect to Hoffman2, you can just type the following command
 $ ssh hoffman2
 ```
 
-## GaussView
+### GaussView
 
 I use GaussView to help me create input files for Gaussian and to visualize molecules. The following section will be about how to access it and use it on Hoffman2.
 
-### Opening GaussView
+#### Opening GaussView
 
 When you login to the cluster, you will be in a login node, and you don't want to open GaussView here. (You can verify you are in a login node because next to your username on your terminal, it will say @login1 or @login2 or @login3, and so on.) Instead you want to start an "interactive session". To do this, you want to use the following command 
 
@@ -94,7 +94,7 @@ At this point, you can now open GaussView using the following command
 $ gaussview
 ```
 
-### Using Ga*ssView
+#### Using Ga*ssView
 
 You can now start creating molecules and setting up your molecules for the type of calculation you want to run. I won't be going over this because I don't know what calculation you want to run lol! There are a lot of youtube videos out there to help. I will instead skip to setting up your calculations with G*ussV\*ew.
 
@@ -114,11 +114,11 @@ Once you finish picking your method, move to "Link 0" to choose your memory and 
 
 Once you are done, you can save your file by clicking edit. After doing so, your input file will show up in a new window. If the functional you wanted to use was not in the drop-down menu, you can now change it to your chosen one by replacing the functional you initally selected. Save the file again and you should be good! You can now exit GaussView. If it asks you if you want to submit your job, *say no*.
 
-## Running Your Job
+### Running Your Job
 
 We want to be submitting our file as a batch job, which takes two steps: writing your submission script, and actually submitting the job.
 
-### Making a Submission Script
+#### Making a Submission Script
 
 You will first need to use a text editor to make your submission script. I recommend a command-line-interface one so that you don't need to open another window! I personally recommend nano because it's probably already installed and it's easy to use. If it's your first time using nano, I will also be including how to use it as we move forward.
 
@@ -220,7 +220,7 @@ We now want to change our directory to the folder you just made.
 $ cd folder-name
 ```
 
-### Submitting Your Job
+#### Submitting Your Job
 
 Before actually submitting the job, we want to make sure that gaussian_submit.sh is an executable script. This can be done with the following command
 
@@ -250,7 +250,7 @@ If you'd like, you can open your joblog once your job is finished to make sure n
 $ cat input-file-name.joblog.joblog-number
 ```
 
-## Getting the Output Files
+### Getting the Output Files
 
 There are a few ways to get the output files from the cluster to your computer. The Hoffman2 Documentation page has a lot of information about that. I tried setting up Google Drive to get my files but that didn't work for me. Box works for me though! The instructions are pretty complex so I will not be going over them.  
 
