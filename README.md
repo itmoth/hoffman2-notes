@@ -180,7 +180,7 @@ Save this file as 'gaussian_submit.sh' or a similar name.
 If you saved the file to your local machine and not to your account on your cluster, you want to move it from your computer to the cluster. You can do this by using the following command:
 
 ```
-$ scp gaussian_submit.sh HOFFMAN2-USERNAME@dtn2.hoffman2.idre.ucla.edu:.
+$ scp gaussian_submit.sh HOFFMAN2-USERNAME@dtn.hoffman2.idre.ucla.edu:.
 ```
 
 To check if the file is actually on your account, be logged into the cluster, and use the following command:
@@ -214,6 +214,12 @@ $ cd folder-name
 ```
 
 ### Submitting Your Job
+
+Before actually submitting the job, we want to make sure that gaussian_submit.sh is an executable script. This can be done with the following command
+
+```
+$ chmod u+x gaussian_submit.sh
+```
 
 We can now submit our job! To do this, we will be using the qsub command
 
