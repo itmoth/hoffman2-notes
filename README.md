@@ -17,7 +17,7 @@ G*uss\*an
 Q-Chem
 - [Q-Chem](#Q-Chem)
   * [Getting and Using IQmol](#getting-and-using-iqmol)
-  * [Making the Submission Script and Submitting Your Job](making-the-submission-script-and-submitting-your-job)
+  * [Making the Submission Script and Submitting Your Job](#making-the-submission-script-and-submitting-your-job)
 
 
 
