@@ -5,8 +5,8 @@ These are my notes for setting up and using Hoffman2 using Windows Subsystem for
 ## Table of Contents
 - [SSH Customization](#ssh-customization)
 
-G*uss\*an
-- [GaussV*ew](#gaussview)
+Gaussian
+- [GaussView](#gaussview)
   * [Opening GaussView](#opening-gaussview)
   * [Using GaussView](#using-gaussview)
 - [Running Your Job](#running-your-job)
