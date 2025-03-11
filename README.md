@@ -1,25 +1,20 @@
-# hoffman2-chem-notes
+# hoffman2-notes
 
-These are my notes for setting up and using Hoffman2 using Windows Subsystem for Linux (WSL). I have not included the steps for getting an account or getting access to G*ussian. If this is your first time using any form of Linux this should also be easy to follow along with!
+These are my notes for setting up and using Hoffman2 using Windows Subsystem for Linux (WSL). I have not included the steps for getting an account or getting access to Gaussian. If this is your first time using any form of Linux this should also be easy to follow along with!
 
 ## Table of Contents
 - [SSH Customization](#ssh-customization)
 
 G*uss\*an
-- [G\*ussV*ew](#gaussview)
-  * [Opening G\*ussVi*w](#opening-gaussview)
-  * [Using G*ussView](#using-gaussview)
+- [GaussV*ew](#gaussview)
+  * [Opening GaussView](#opening-gaussview)
+  * [Using GaussView](#using-gaussview)
 - [Running Your Job](#running-your-job)
   * [Making a Submission Script](#making-a-submission-script)
   * [Submitting Your Job](#submitting-your-job)
 - [Getting the Output Files](#getting-the-output-files)
 
-Q-Chem
-- [Q-Chem](#Q-Chem)
-  * [Getting and Using IQmol](#getting-and-using-iqmol)
-  * [Making the Submission Script and Submitting Your Job](#making-the-submission-script-and-submitting-your-job)
-
-## G*us\sian
+## Gaussian
 
 ### SSH Customization 
 
@@ -94,9 +89,9 @@ At this point, you can now open GaussView using the following command
 $ gaussview
 ```
 
-#### Using Ga*ssView
+#### Using GaussView
 
-You can now start creating molecules and setting up your molecules for the type of calculation you want to run. I won't be going over this because I don't know what calculation you want to run lol! There are a lot of youtube videos out there to help. I will instead skip to setting up your calculations with G*ussV\*ew.
+You can now start creating molecules and setting up your molecules for the type of calculation you want to run. I won't be going over this because I don't know what calculation you want to run lol! There are a lot of youtube videos out there to help. I will instead skip to setting up your calculations with GaussView.
 
 Once you are done setting up everything for your molecule, you want to click the inquiry button, which looks like this: 
 
@@ -202,7 +197,7 @@ This lists the files in the current directory you are in. gaussian_submit.sh sho
 $ mkdir folder-name
 ```
 
-Now, to move your g*ussian input file into the folder:
+Now, to move your Gaussian input file into the folder:
 
 ```
 $ mv input-file-name.gjf folder-name
@@ -253,78 +248,5 @@ $ cat input-file-name.joblog.joblog-number
 ### Getting the Output Files
 
 There are a few ways to get the output files from the cluster to your computer. The Hoffman2 Documentation page has a lot of information about that. I tried setting up Google Drive to get my files but that didn't work for me. Box works for me though! The instructions are pretty complex so I will not be going over them.  
-
-
-
-## Q-Chem 
-
-I use IQmol to create my input files for Q-Chem, as it's made for that.
-
-### Getting and Using IQmol
-
-If you are using windows subsystem for linux, you can download the Windows version straight from their website. However, if you are using Linux, I recommend running IQmol with [Wine](https://www.winehq.org), which will allow you to run Windows applications on Linux. There are also official Linux versions of IQmol, but they are much older versions, and only for Ubuntu, Fedora, and CentOS.
-
-I will not be going over the steps of using IQmol, but it's just like GaussView. Build your molecule, then hit Calculate and get your input file. Once you have the input file, you can then send it to your Hoffman2 account using the aforementioned command: 
-
-```
-$ scp FILE-NAME HOFFMAN2-USERNAME@dtn.hoffman2.idre.ucla.edu:.
-```
-
-### Making the Submission Script and Submitting Your Job
-
-Make an .sh file and copy paste the following code:
-
-```
-### qchem_submit.sh START ###
-#!/bin/bash
-#$ -cwd
-# error = Merged with joblog
-#$ -o joblog.$JOB_ID
-#$ -j y
-# Edit the line below to request the appropriate runtime and memory
-# (or to add any other resource) as needed:
-#$ -l h_rt=24:00:00,h_data=8G
-# Change the number of cores/nodes as needed:
-#$ -pe dc* 12
-# Email address to notify
-#$ -M $USER@mail
-# Notify when
-#$ -m bea
-
-# echo job info on joblog:
-echo "Job $JOB_ID started on:   " `hostname -s`
-echo "Job $JOB_ID started on:   " `date `
-echo " "
-
-# load the job environment:
-. /u/local/Modules/default/init/modules.sh
-module load qchem/current_mpi
-module li
-echo " "
-
-# substitute the command to run the needed Q-Chem command below
-# (in particular the name of the input and output files):
-echo "/usr/bin/time -apv qchem -mpi -np $NSLOTS sample.inp sample.out_$JOB_ID"
-/usr/bin/time -apv qchem -mpi -np $NSLOTS sample.inp sample.out_$JOB_ID
-
-# echo job info on joblog:
-echo " "
-echo "Job $JOB_ID ended on:   " `hostname -s`
-echo "Job $JOB_ID ended on:   " `date `
-echo " "
-### qchem_submit.sh STOP ###
-```
-Where it says $NSLOTS, specify the number of processors you want to use. Wherever it says sample, replace it with your input file name.
-
-To submit your job, use the command:
-
-```
-qsub -pe dc* number-of-processors -l h_rt=24:00:00,h_data=number-of-gigs qchem_submit.sh
-```
-
-Note that for the processor number we did -pe dc* instad of -pe shared
-
-Once your job is finished, I recommend using IQmol to look at the output!
-
 
 
