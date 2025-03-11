@@ -97,7 +97,7 @@ Once you are done setting up everything for your molecule, you want to click the
 
 <img src="https://github.com/itmoth/hoffman2-chem-notes/blob/main/screenshots/inquirybutton.png" width="350">
 
-Then, click Calculate on the top bar, and then Ga*ssian Calculation Setup. A new window will pop up. At this point you can select your job type. 
+Then, click Calculate on the top bar, and then Gaussian Calculation Setup. A new window will pop up. At this point you can select your job type. 
 
 Here are some notes regarding the job types:
 - If you want to run a transition state calculation, you will need to select Optimize, and then select whatever transition state calculation you want to run under the "Optimize To" option.
