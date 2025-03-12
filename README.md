@@ -194,6 +194,7 @@ If you saved the file to your local machine and not to your account on the clust
 ```
 $ scp gaussian_submit.sh HOFFMAN2-USERNAME@dtn.hoffman2.idre.ucla.edu:.
 ```
+P.S. you could've just cloned this repo and taken the submission script because I have it uploaded
 
 To check if the file is actually on your account, be logged into the cluster, and use the following command:
 
