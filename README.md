@@ -4,6 +4,8 @@ These are my notes for setting up and using Hoffman2! I have not included the st
 
 Please also check with the documentation website for Hoffman2 ([https://www.hoffman2.idre.ucla.edu/](https://www.hoffman2.idre.ucla.edu/)) because this might have out of date information
 
+Also these notes are lowkey a mess because I switched from Windows to Linux soon after writing part of this lol
+
 ## Table of Contents
 - [SSH Customization](#ssh-customization)
 
