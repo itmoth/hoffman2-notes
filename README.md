@@ -16,6 +16,8 @@ Gaussian
   * [Submitting Your Job](#submitting-your-job)
 - [Getting the Output Files](#getting-the-output-files)
 
+- [Running Jupyter](#jupyter)
+
 ## Gaussian
 
 ### SSH Customization 
@@ -270,3 +272,20 @@ $ cat input-file-name.joblog.joblog-number
 
 I will not be going over this lol! 
 
+## Jupyter
+
+If you want to run Jupyter, you want to first get this script made by the folks who manage Hoffman2. Make sure you put this command onto your local machine, not while you're connected to Hoffman2.
+
+```
+$ wget https://raw.githubusercontent.com/rdauria/jupyter-notebook/main/h2jupynb
+```
+
+The name of the script is h2jupynb. To make it executable ```chmod u+x``` it.
+
+Now, to start a session, run: (replace USERNAME with your Hoffman2 username)
+
+```
+$ ./h2jupynb -u USERNAME
+```
+
+You'll then need to type your password, and you'll need to type it again a few moments after you type it the first time. Check your browser and you should find an open Jupyter Notebook. If you want to switch to Jupyter Lab, just go to the URL, and change the 'tree' in the URL to 'lab'.
