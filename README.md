@@ -1,8 +1,8 @@
 # hoffman2-notes
 
-These are my notes for setting up and using Hoffman2! I have not included the steps for getting an account or getting access to Gaussian. If this is your first time using any form of Linux this should also be easy to follow along with!
+These are my notes for setting up and using Hoffman2
 
-Please also check with the documentation website for Hoffman2 ([https://www.hoffman2.idre.ucla.edu/](https://www.hoffman2.idre.ucla.edu/)) because this might have out of date information
+Documentation website for Hoffman2 ([https://www.hoffman2.idre.ucla.edu/](https://www.hoffman2.idre.ucla.edu/)) because this might have out of date information
 
 Also these notes are lowkey a mess because I switched from Windows to Linux soon after writing part of this lol
 
